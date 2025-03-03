@@ -3,23 +3,25 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        String[] count = scanner.nextLine().split(" ");
-        int[] numbers = new int[Integer.parseInt(count[0])];
 
-        for (int i = 0; i < numbers.length; i++) {
-            numbers[i] = 0;
-        }
+        int N = scanner.nextInt();
+        int M = scanner.nextInt();
 
-        for (int i = 0; i < Integer.valueOf(count[1]); i++) {
-            String[] method = scanner.nextLine().split(" ");
+        int[] numbers = new int[N];
 
-            for (int j = Integer.parseInt(method[0]); j <= Integer.parseInt(method[1]); j++) {
-                numbers[j - 1] = Integer.parseInt(method[2]);
+        for (int i = 0; i < M; i++) {
+            int i1 = scanner.nextInt();
+            int j1 = scanner.nextInt();
+            int k = scanner.nextInt();
+
+            for (int j = i1 - 1; j < j1; j++) {
+                numbers[j] = k;
             }
         }
 
         for (int i = 0; i < numbers.length; i++) {
             System.out.print(numbers[i] + " ");
         }
+
     }
 }
