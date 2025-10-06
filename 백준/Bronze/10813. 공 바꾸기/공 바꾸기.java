@@ -1,39 +1,29 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class Main {
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int N = Integer.parseInt(st.nextToken());
+        int M = Integer.parseInt(st.nextToken());
 
+        int[] arr = new int[N];
+        for (int i = 0; i < N; i++) arr[i] = i + 1;
 
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        String[] cmd = scanner.nextLine().split(" ");
-        int[] number = new int[cmd.length];
-
-        for (int i = 0; i < cmd.length; i++) {
-            number[i] = Integer.parseInt(cmd[i]);
+        for (int k = 0; k < M; k++) {
+            st = new StringTokenizer(br.readLine());
+            int i = Integer.parseInt(st.nextToken()) - 1;
+            int j = Integer.parseInt(st.nextToken()) - 1;
+            int tmp = arr[i]; arr[i] = arr[j]; arr[j] = tmp;
         }
 
-        int[] result = new int[number[0]];
-
-        for (int i = 0; i < result.length; i++) {
-            result[i] = i + 1;
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < N; i++) {
+            if (i > 0) sb.append(' ');
+            sb.append(arr[i]);
         }
-
-        for (int i = 0; i < number[1]; i++) {
-            String[] num = scanner.nextLine().split(" ");
-            int a = Integer.parseInt(num[0]);
-            int b = Integer.parseInt(num[1]);
-
-            int c = result[a - 1];
-            result[a - 1] = result[b - 1];
-            result[b - 1] = c;
-        }
-
-        for (int i = 0; i < result.length; i++) {
-            if (i != result.length - 1) {
-                System.out.print(result[i] + " ");
-            } else {
-                System.out.print(result[i]);
-            }
-        }
+        System.out.print(sb);
     }
 }
