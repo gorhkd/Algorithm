@@ -7,8 +7,8 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         int N = Integer.parseInt(br.readLine());
-        Double M = 0.0;
-        Double[] arr = new Double[N];
+        double M = 0.0;
+        double[] arr = new double[N];
 
         StringTokenizer st = new StringTokenizer(br.readLine());
 
@@ -21,7 +21,7 @@ public class Main {
             arr[i] = (arr[i] * 100) / M ;
         }
 
-        Double result = 0.0;
+        double result = 0.0;
         for (int i = 0; i < N; i++) {
             result += arr[i];
         }
