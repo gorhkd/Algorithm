@@ -10,21 +10,19 @@ public class Main {
         for (int i = 0; i < 26; i++) {
             result[i] = -1;
         }
-
-        int[] arr = new int[s.length()];
+        
         for (int i = 0; i < s.length(); i++) {
-            arr[i] = s.charAt(i) - 'a';
-        }
-
-        for (int i = 0; i < arr.length; i++) {
-            if (result[arr[i]] == -1) {
-                result[arr[i]] = i;
+            int index = s.charAt(i) - 'a';
+            
+            if (result[index] == -1) {
+                result[index] = i;
             }
         }
 
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < result.length; i++) {
-            sb.append(result[i]).append(" ");
+            sb.append(result[i]);
+            if (i < 25) sb.append(" ");
         }
         System.out.println(sb);
         }
