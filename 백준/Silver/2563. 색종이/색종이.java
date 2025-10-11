@@ -7,6 +7,7 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int cnt = Integer.parseInt(br.readLine());
         boolean[][] num = new boolean[100][100];
+        int sum = 0;
 
         for (int i = 0; i < cnt; i++) {
             StringTokenizer st = new StringTokenizer(br.readLine());
@@ -15,19 +16,14 @@ public class Main {
 
             for (int j = 0; j < 10; j++) {
                 for (int k = 0; k < 10; k++) {
-                    num[low + j][col + k] = true;
+                    if (num[low + j][col + k] != true) {
+                        num[low + j][col + k] = true;
+                        sum ++;
+                    }
                 }
             }
         }
 
-        int sum = 0;
-        for (int j = 0; j < 100; j++) {
-            for (int k = 0; k < 100; k++) {
-                if (num[j][k] == true) {
-                    sum ++;
-                }
-            }
-        }
         System.out.println(sum);
     }
 }
