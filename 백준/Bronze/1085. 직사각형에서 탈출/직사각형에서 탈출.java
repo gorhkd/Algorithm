@@ -10,21 +10,11 @@ public class Main {
         int y = Integer.parseInt(st.nextToken());
         int w = Integer.parseInt(st.nextToken());
         int h = Integer.parseInt(st.nextToken());
-        int result = 0;
+        
+        int dx = Math.min(x, w - x);
+        int dy = Math.min(y, h - y);
+        int ans = Math.min(dx, dy);
 
-        if (w - x > x) {
-            result = x;
-        } else {
-            result = w - x;
-        }
-
-        if (h - y > y && result > y) {
-            result = y;
-        } else if (h - y < y && result > h - y) {
-            result = h - y;
-        }
-
-        System.out.println(result);
-
+        System.out.println(ans);
     }
 }
