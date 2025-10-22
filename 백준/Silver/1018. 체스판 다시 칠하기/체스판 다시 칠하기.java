@@ -6,78 +6,31 @@ public class Main {
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
-        int col = Integer.parseInt(st.nextToken());
-        int low = Integer.parseInt(st.nextToken());
+        int N = Integer.parseInt(st.nextToken());
+        int M = Integer.parseInt(st.nextToken());
 
-        char[][] chars = new char[col][low];
-
-        for (int i = 0; i < col; i++) {
+        char[][] board = new char[N][M];
+        for (int i = 0; i < N; i++) {
             String s = br.readLine();
-            for (int j = 0; j < low; j++) {
-                chars[i][j] = s.charAt(j);
+            for (int j = 0; j < M; j++) {
+                board[i][j] = s.charAt(j);
             }
         }
-
-        char[] case1 = {'W', 'B', 'W', 'B', 'W', 'B', 'W', 'B'};
-        char[] case2 = {'B', 'W', 'B', 'W', 'B', 'W', 'B', 'W'};
-        int min = 64;
-        int a = 0, b = 0;
-
-        while (a != col - 7 && b != low -  7) {
-            int cnt = 0;
-
-            for (int i = 0 + a; i < 8 + a; i++) {
-                int up = 0;
-
-                for (int j = 0 + b; j < 8 + b; j++) {
-
-                    if (0 == i % 2) {
-                        if (chars[i][j] != case1[up]) {
-                            cnt++;
-                        }
+        
+        int ans = 64;
+        for (int r = 0; r <= N - 8; r++) {
+            for (int c = 0; c <= M - 8; c++) {
+                int repaintW = 0;
+                for (int x = 0; x < 8; x++) {
+                    for (int y = 0; y < 8; y++) {
+                        char expected = ((x + y) % 2 == 0) ? 'W' : 'B';
+                        if (board[r + x][c + y] != expected) repaintW++;
                     }
-
-                    if (1 == i % 2) {
-                        if (chars[i][j] != case2[up]) {
-                            cnt++;
-                        }
-                    }
-                        up++;
                 }
-            }
-
-            min = Math.min(min, cnt);
-            cnt = 0;
-
-            for (int i = 0 + a; i < 8 + a; i++) {
-                int up = 0;
-
-                for (int j = 0 + b; j < 8 + b; j++) {
-                    if (0 == i % 2) {
-                        if (chars[i][j] != case2[up]) {
-                            cnt++;
-                        }
-                    }
-
-                    if (1 == i % 2) {
-                        if (chars[i][j] != case1[up]) {
-                            cnt++;
-                        }
-                    }
-                    up++;
-                }
-            }
-
-            min = Math.min(min, cnt);
-            b++;
-
-            if (b == low - 7) {
-                b = 0;
-                a++;
+                int repaintB = 64 - repaintW;
+                ans = Math.min(ans, Math.min(repaintW, repaintB));
             }
         }
-
-
-        System.out.println(min);
+        System.out.println(ans);
     }
 }
