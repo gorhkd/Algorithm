@@ -9,23 +9,29 @@ public class Main {
         int N = Integer.parseInt(br.readLine());
         int size = Integer.parseInt(br.readLine());
         String s = br.readLine();
-        int answer = 0;
+        
+        int ans = 0;
+        int cnt = 0;
+        int i = 0;
+        
+        while (i <= size - 3) {
+            if (s.charAt(i) == 'I' && s.charAt(i + 1) == 'O' && s.charAt(i + 2) == 'I') {
+                cnt++;
+                i += 2;
 
-        StringBuilder sb = new StringBuilder("IOI");
-        for (int i = 1; i < N; i++) {
-            sb.append("OI");
-        }
-
-        String valid = sb.toString();
-
-        for (int i = 0; i <= size - valid.length(); i++) {
-            String subString = s.substring(i, i + valid.length());
-            if (valid.equals(subString)) {
-                answer++;
-                i ++;
+                if (cnt == N) {
+                    ans++;
+                    cnt--;
+                }
+            
+            } else {
+                cnt = 0;
+                i++;
             }
+            
         }
-
-        System.out.println(answer);
+        
+        
+        System.out.println(ans);
     }
 }
