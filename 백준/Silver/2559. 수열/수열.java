@@ -12,16 +12,11 @@ public class Main {
         int[] arr = new int[N + 1];
 
         st = new StringTokenizer(br.readLine());
-        arr[1] = Integer.parseInt(st.nextToken());
-
-        for (int i = 2; i <= N; i++) {
-            arr[i] = arr[i - 1] + Integer.parseInt(st.nextToken());
-        }
-
         int ans = Integer.MIN_VALUE;
 
-        for (int i = K; i <= N; i++) {
-            ans = Math.max(ans, arr[i] - arr[i - K]);
+        for (int i = 1; i <= N; i++) {
+            arr[i] = arr[i - 1] + Integer.parseInt(st.nextToken());
+            if (i >= K) ans = Math.max(ans, arr[i] - arr[i - K]);
         }
 
         System.out.println(ans);
